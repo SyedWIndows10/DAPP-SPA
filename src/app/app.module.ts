@@ -22,7 +22,7 @@ import { NavComponent } from './nav/nav.component';
 import { ConnectComponent } from './connect/connect.component';
 import { CreateCitizenComponent } from './create-citizen/create-citizen.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -53,6 +53,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducer),
     EffectsModule.forFeature([UserEffects, CitizenEffects]),
     StoreModule.forFeature(fromCitizen.citizenFeatureKey, fromCitizen.reducer),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

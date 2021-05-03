@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { CustomValidator } from '../custom-validator';
 import { ContractService } from '../_services/contract.service';
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-create-citizen',
   templateUrl: './create-citizen.component.html',
@@ -27,7 +28,8 @@ export class CreateCitizenComponent implements OnInit {
     private router: Router,
     private alertify: AlertifyService,
     private service: ContractService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private SpinnerService: NgxSpinnerService
   ) {
 
   }
@@ -52,12 +54,14 @@ export class CreateCitizenComponent implements OnInit {
 
   create() {
     if (this.citizenForm.valid) {
+      this.SpinnerService.show();
       this.citizen = Object.assign({}, this.citizenForm.value);
       console.log(this.citizen);
       this.service.addCitizen(this.citizen.username,
         this.citizen.age,
         this.citizen.city,
         this.citizen.notes).then((res) => {
+          this.SpinnerService.hide();
           if(res.events){
             this.alertify.success("Citizen has been added Successfully");
             this.router.navigate(['/lists']);
