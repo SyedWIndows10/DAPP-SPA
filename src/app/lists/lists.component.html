@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-6">
+<div class="list row">
+
+  <div class="col-md-6">
+    <h4>Citizens List</h4>
+
+    <table id="citizens">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Notes</th>
+      </tr>
+      <tr   *ngFor="
+      let data of result | paginate : {
+              itemsPerPage: pageSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    ">
+        <td>
+          {{data.returnValues.name}}
+        </td>
+        <td>
+          {{data.returnValues.age}}
+        </td>
+        <td>
+          {{data.returnValues.city}}
+        </td>
+        <td>
+          <button type="button" (click)=getNotes(data.returnValues.id) class="btn btn-primary btn-circle"><i class="fa fa-list"></i>
+           </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-12">
+    <pagination-controls
+     previousLabel="Prev"
+     nextLabel="Next"
+     responsive="true"
+     (pageChange)="handlePageChange($event)"
+   ></pagination-controls>
+ </div>
+
+  ...
+
+  <div class="mt-3">
+    ...
+
+    Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+</div>
+</div>
+</div>
