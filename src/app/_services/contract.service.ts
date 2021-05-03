@@ -95,6 +95,23 @@ export class ContractService {
         this.citizensList = events;
        }
     );
+
+    // Commented this code since cloudfare worker cache available only in production. In Dev environment, Cache.match will always return undefined.
+//     await fetch(new Request("https://my-worker.syed123098.workers.dev", {
+//     method: "GET",
+//     body: JSON.stringify({
+//         "jsonrpc":"2.0",
+//         "method":"eth_getBlockByNumber",
+//         "params":["0x2244", true],
+//         "id":64
+//     }),
+//     headers: {
+//         "Content-Type": "application/json"
+//     }
+// })).then((resp) => {
+//     return resp.json()
+// });
+
   }
 
   async getNoteByCitizenId(orgID):Promise<string> {
