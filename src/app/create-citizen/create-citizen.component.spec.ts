@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CreateCitizenComponent } from './create-citizen.component';
 
@@ -8,6 +10,8 @@ describe('CreateCitizenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule,ReactiveFormsModule,
+        FormsModule],
       declarations: [ CreateCitizenComponent ]
     })
     .compileComponents();
